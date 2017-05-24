@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Sockets;
+
 
 namespace TCP_Klient
 {
@@ -19,7 +21,21 @@ namespace TCP_Klient
 
         private void przycisk_polacz_Click(object sender, EventArgs e)
         {
+            string host = Adres.Text;
+            int port = System.Convert.ToInt32(MyPort.Value);
 
+            try
+            {
+                TcpClient klient = new TcpClient(host, port);
+                Info_o_polaczeniu.Items.Add("Nawiązano połączenie z" +
+                    host + "na porcie:" + port);
+                klient.Close();
+            }
+            catch (Exception ex)
+            {
+                Info_o_polaczeniu.Items.Add("Błąd: " + "Nie udało się nawiązać połączenia !");
+                MessageBox.Show(ex.ToString(), "Błąd");
+            }
         }
     }
 }
