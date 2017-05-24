@@ -16,5 +16,10 @@ namespace TCP_Klient
         {
             InitializeComponent();
         }
+
+        private void przycisk_polacz_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
